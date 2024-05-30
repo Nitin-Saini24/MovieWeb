@@ -71,7 +71,7 @@ export default function App() {
           setError("");
 
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
             { signal: controller.signal }
           );
 
@@ -113,6 +113,9 @@ export default function App() {
     <>
       <NavBar>
         <Search query={query} setQuery={setQuery} />
+
+        {/* <input onChange={(e) => setQuery(e.target.value)} /> */}
+
         <NumResults movies={movies} />
       </NavBar>
 
@@ -191,7 +194,7 @@ function Search({ query, setQuery }) {
       className="search"
       type="text"
       placeholder="Search movies..."
-      value={query}
+      value={query ?? ""}
       onChange={(e) => setQuery(e.target.value)}
       ref={inputEl}
     />
