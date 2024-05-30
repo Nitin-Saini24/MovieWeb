@@ -17,6 +17,8 @@ export default function App() {
     return JSON.parse(StoredValue);
   });
 
+  console.log(query.length);
+
   /*
   useEffect(function () {
     console.log("After initial render");
@@ -93,7 +95,7 @@ export default function App() {
         }
       }
 
-      if (query?.length < 3) {
+      if (query.length < 3) {
         setMovies([]);
         setError("");
         return;
