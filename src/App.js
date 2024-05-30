@@ -7,7 +7,7 @@ const average = (arr) =>
 const KEY = "b2ddeb88";
 
 export default function App() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(null);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -93,7 +93,7 @@ export default function App() {
         }
       }
 
-      if (query.length < 3) {
+      if (query?.length < 3) {
         setMovies([]);
         setError("");
         return;
@@ -201,7 +201,7 @@ function Search({ query, setQuery }) {
 function NumResults({ movies }) {
   return (
     <p className="num-results">
-      Found <strong>{movies.length}</strong> results
+      Found <strong>{movies?.length}</strong> results
     </p>
   );
 }
@@ -427,7 +427,7 @@ function WatchedSummary({ watched }) {
       <div>
         <p>
           <span>#️⃣</span>
-          <span>{watched.length} movies</span>
+          <span>{watched?.length} movies</span>
         </p>
         <p>
           <span>⭐️</span>
