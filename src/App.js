@@ -49,19 +49,19 @@ export default function App() {
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
 
-    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
+    localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-  useEffect(
-    function () {
-      localStorage.setItem("watched", JSON.stringify(watched));
-    },
-    [watched]
-  );
+  // useEffect(
+  //   function () {
+  //     localStorage.setItem("watched", JSON.stringify(watched));
+  //   },
+  //   [watched]
+  // );
 
   useEffect(
     function () {
@@ -284,7 +284,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
 
-  console.log(userRating);
+  // console.log(userRating);
   const isWatched = watched?.map((movie) => movie.imdbID).includes(selectedId);
   const watchedUserRating = watched?.find(
     (movie) => movie.imdbID === selectedId
