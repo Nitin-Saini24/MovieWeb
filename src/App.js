@@ -14,10 +14,10 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [watched, setWatched] = useState(function () {
     const StoredValue = localStorage.getItem("watched");
-    return StoredValue ? JSON.parse(StoredValue) : [];
+    return JSON.parse(StoredValue);
   });
 
-  // console.log(query.length);
+  console.log(watched);
 
   /*
   useEffect(function () {
@@ -47,21 +47,27 @@ export default function App() {
   }
 
   function handleAddWatched(movie) {
-    setWatched((watched) => [...watched, movie]);
-
-    localStorage.setItem("watched", JSON.stringify([...watched, movie]));
+    setWatched((watched) =>
+      Array.isArray(watched) ? [...watched, movie] : [movie]
+    );
   }
+
+  // function handleAddWatched(movie) {
+  //   setWatched((watched) => [...watched, movie]);
+
+  //   // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
+  // }
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-  // useEffect(
-  //   function () {
-  //     localStorage.setItem("watched", JSON.stringify(watched));
-  //   },
-  //   [watched]
-  // );
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
+  );
 
   useEffect(
     function () {
